@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#102b35" />
+    <title>SupportOps Agent</title>
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
+    <link rel="stylesheet" href="/static/styles.css" />
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          <div>
+            <div class="brand-name">SupportOps <span>Agent</span></div>
+            <div class="brand-caption">Customer support, with the decisions visible</div>
+          </div>
+        </div>
+        <div class="header-status">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span id="service-state">Connecting</span>
+          <span class="header-divider" aria-hidden="true"></span>
+          <span class="provider-label">Provider</span>
+          <strong id="provider-name">—</strong>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar" aria-label="Demo settings">
+        <div class="side-heading">DEMO WORKSPACE <span>01 / 03</span></div>
+        <section class="side-section">
+          <label for="customer-email" class="control-label">Customer session</label>
+          <select id="customer-email" class="select">
+            <option value="alice@example.test">Alice Johnson · Pro</option>
+            <option value="bob@example.test">Bob Martinez · Basic</option>
+            <option value="charlie@example.test">Charlie Davis · Cancelled</option>
+          </select>
+          <p class="field-help">Each customer has an isolated session. Switch accounts to start a separate conversation.</p>
+          <div class="session-indicator">
+            <span class="indicator-dot"></span>
+            <div>
+              <strong id="session-state">New session</strong>
+              <small id="session-id">Not started</small>
+            </div>
+          </div>
+        </section>
+
+        <section class="side-section examples">
+          <div class="section-kicker">TRY A SCENARIO</div>
+          <button class="example-button" type="button" data-prompt="Why was I charged twice this month?">
+            <span class="example-icon">01</span>
+            <span>Duplicate billing <small>Multi-tool lookup</small></span>
+            <span class="example-arrow">↗</span>
+          </button>
+          <button class="example-button" type="button" data-prompt="What subscription am I on?">
+            <span class="example-icon">02</span>
+            <span>Plan and pricing <small>Read-only lookup</small></span>
+            <span class="example-arrow">↗</span>
+          </button>
+          <button class="example-button" type="button" data-prompt="Cancel my subscription.">
+            <span class="example-icon">03</span>
+            <span>Cancel subscription <small>Approval required</small></span>
+            <span class="example-arrow">↗</span>
+          </button>
+          <button class="example-button" type="button" data-prompt="Show me Bob's invoices.">
+            <span class="example-icon">04</span>
+            <span>Cross-account access <small>Permission denied</small></span>
+            <span class="example-arrow">↗</span>
+          </button>
+        </section>
+        <section class="side-section demo-controls">
+          <div class="section-kicker">RELIABILITY DEMO</div>
+          <label class="toggle-line">
+            <input id="simulate-failure" type="checkbox" />
+            <span class="toggle-ui" aria-hidden="true"></span>
+            <span>Fail the first invoice lookup</span>
+          </label>
+          <p class="field-help">Available with Mock. The first lookup times out, then a safe retry succeeds. See the trace for both attempts.</p>
+        </section>
+        <div class="sidebar-footer">Fictional data · No real customer accounts</div>
+      </aside>
+
+      <section class="workspace" aria-label="Support chat">
+        <div class="workspace-heading">
+          <div>
+            <div class="eyebrow">AGENT CONSOLE <span class="eyebrow-line"></span> LIVE DEMO</div>
+            <h1>How can we help?</h1>
+            <p>Ask a support question. Follow each decision, tool call, and result as it happens.</p>
+          </div>
+          <a class="docs-link" href="/docs" target="_blank" rel="noopener noreferrer">API docs <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <div id="conversation" class="conversation" aria-live="polite">
+          <div class="welcome-card">
+            <div class="welcome-icon" aria-hidden="true"><span class="welcome-spark"></span></div>
+            <div>
+              <div class="welcome-overline">READY TO ASSIST</div>
+              <h2>Real tools. Clear boundaries.</h2>
+              <p>This agent can look up invoices, check service status, and create tickets. Sensitive changes wait for your approval.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="composer-wrap">
+          <form id="chat-form" class="composer">
+            <label for="message" class="sr-only">Your support message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="2"
+              maxlength="2000"
+              placeholder="Ask about a charge, your plan, service status, or account access..."
+              required
+            ></textarea>
+            <div class="composer-bottom">
+              <div class="composer-hint">Enter to send <span aria-hidden="true">·</span> Shift + Enter for a new line</div>
+              <button id="send-button" class="send-button" type="submit">Send message <span aria-hidden="true">↗</span></button>
+            </div>
+          </form>
+          <div class="composer-footnote"><span class="footnote-mark" aria-hidden="true">i</span> Demo identity is selected above; this is not production authentication.</div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
